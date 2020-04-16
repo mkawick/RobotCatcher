@@ -25,7 +25,7 @@ public class MoveToNode : IAgentMovement
     
     public override void Reset()
     {
-        //lastSwitchTime = Time.time;
+        lastSwitchTime = Time.time;
     }
     public override bool Update()
     {
@@ -140,6 +140,7 @@ public class EnemyAgentAI : MonoBehaviour
         movementModes[0].myAgent = this;
         movementModes[1] = new MoveToPlayer();
         movementModes[1].myAgent = this;
+        movementModes[1].minSwitchTime = 5;
 
         currentMovementNode = movementModes[0];
     }
