@@ -5,10 +5,21 @@ using UnityEngine;
 public class AgentManager : MonoBehaviour
 {
     public Material[] friendlinessMats;
+    EnemyAgentAI[] aiAgents;
+
+    public bool AreAllAiAgentsFriendly()
+    {
+        foreach(var ai in aiAgents)
+        {
+            if (ai.isFriendly == false)
+                return false;
+        }
+        return true;    
+    }
     void Start()
     {
-        EnemyAgentAI [] ai = gameObject.GetComponentsInChildren<EnemyAgentAI>();
-        foreach (var child in ai)
+        aiAgents = gameObject.GetComponentsInChildren<EnemyAgentAI>();
+        foreach (var child in aiAgents)
         {
             //child is your child transform
             child.manager = this;
@@ -25,12 +36,11 @@ public class AgentManager : MonoBehaviour
     {
         List<EnemyAgentAI> enemies = new List<EnemyAgentAI>();
 
-        EnemyAgentAI[] ai = gameObject.GetComponentsInChildren<EnemyAgentAI>();
-        foreach (var child in ai)
+        foreach (var ai in aiAgents)
         {
-            if((child.transform.position - position).magnitude < range)
+            if((ai.transform.position - position).magnitude < range)
             {
-                enemies.Add(child);
+                enemies.Add(ai);
             }
         }
 

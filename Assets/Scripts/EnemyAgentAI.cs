@@ -109,7 +109,7 @@ public class MoveToPlayer : IAgentMovement
 public class EnemyAgentAI : MonoBehaviour
 {
 
-    bool isFriendly = false;
+    public bool isFriendly = false;
     public Transform[] navNodes;
     public Transform playerNode;
     public Renderer modelRenderer;
@@ -157,8 +157,6 @@ public class EnemyAgentAI : MonoBehaviour
                 manager.friendlinessMats.Length != 0 &&
                 modelRenderer != null)
             {
-                //var rend = GetComponent<Renderer>();
-                //var mat = GetComponent<Material>();
                 if (isFriendly == false) // enemy
                     modelRenderer.material = manager.friendlinessMats[0];
                 else if (isFriendly == true) // friend
