@@ -22,10 +22,23 @@ namespace UnityStandardAssets.SceneUtils
             {
                 return;
             }
+            ShowTarget(true);
             transform.position = hit.point + hit.normal*surfaceOffset;
             if (setTargetOn != null)
             {
                 setTargetOn.SendMessage("SetTarget", transform);
+            }
+        }
+
+        internal void ShowTarget(bool show)
+        {
+            if(show == true)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else 
+            {
+                transform.localScale = Vector3.zero;
             }
         }
     }
