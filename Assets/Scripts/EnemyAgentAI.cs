@@ -122,6 +122,9 @@ public class EnemyAgentAI : MonoBehaviour
     public float NodeDistMin = 8;
     public float NodeDistMax = 11;
 
+    [SerializeField]
+    private float minDistToWayPoint = 1.3f;
+
     IAgentMovement[] movementModes;
     IAgentMovement currentMovementNode;
     int currentMovementIndex;
@@ -132,6 +135,8 @@ public class EnemyAgentAI : MonoBehaviour
         FollowingPlayer
     }
     NavigationMode mode = NavigationMode.MovingToNextMode;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -288,7 +293,7 @@ public class EnemyAgentAI : MonoBehaviour
             index = navNodes.Length - 1;
 
         float dist = (navNodes[index].transform.position - transform.position).magnitude;
-        if (dist < 1)
+        if (dist < minDistToWayPoint)
             return true;
         return false;
     }
