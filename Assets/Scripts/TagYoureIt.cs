@@ -27,7 +27,7 @@ public class TagYoureIt : MonoBehaviour
     {
         if(amIIt == true && autoTarget == true)
         {
-            if(DoIHaveATarget() )
+            if(DoIHaveATarget())
             {
                 var control = GetComponent<AICharacterControl>();
                 control.target = target.transform;
@@ -42,7 +42,31 @@ public class TagYoureIt : MonoBehaviour
             }
         }
         else // todo, avoid
-        { 
+        {
+            if (target == null)
+            {
+                target = gm.WhoIsIt();
+            }
+            RunAway();
+        }
+    }
+
+    void RunAway()
+    {
+        if (autoTarget == false)
+            return;
+
+        if (Time.time - lastTimeIChangedTarget > 2.0f)
+        {
+            Vector3 line = target.transform.position- this.transform.position;
+            Vector3 direction = UnityEngine.Random.onUnitSphere;
+
+            //target = transform;
+            float dist = 5.0f;
+            direction *= dist;
+            var control = GetComponent<AICharacterControl>();
+            control.SetTarget(direction);
+            lastTimeIChangedTarget = Time.time;
         }
     }
 

@@ -61,4 +61,16 @@ public class GameManager : MonoBehaviour
         else
             tagged.modelRenderer.material = matsForTagged[1];
     }
+
+    internal TagYoureIt WhoIsIt()
+    {
+        foreach (var tagee in tagPlayers)
+        {
+            if (tagee.amIIt == true)
+            {
+                return tagee;
+            }
+        }
+        return null;
+    }
 }
