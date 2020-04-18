@@ -6,7 +6,10 @@ using UnityStandardAssets.SceneUtils;
 
 public class PlayerKeyboardLocomotion : MonoBehaviour
 {
-    public PlaceTargetWithMouse mouseClick;
+    [SerializeField]
+    PlaceTargetWithMouse mouseClick;
+    [SerializeField]
+    float speedMultiplier = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,8 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
     void Update()
     {
         var control = GetComponent<ThirdPersonCharacter>();
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal") * speedMultiplier;
+        float v = Input.GetAxis("Vertical") * speedMultiplier;
 
         float epsilon = 0.00001f;
         if (Mathf.Abs(h) > epsilon || Mathf.Abs(v) > epsilon)
@@ -26,6 +29,7 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
             Vector3 moveDir = v * Vector3.forward + h * Vector3.right;
             control.Move(moveDir, false, false);
 
+            Debug.Log("v= " + v + ", h= " + h);
             ClearExistingTarget();
         }
         /*   if (Input.GetKeyDown(KeyCode.UpArrow) == true)
