@@ -16,6 +16,7 @@ public class TagYoureIt : MonoBehaviour
     TagYoureIt target;
 
     public float lastTaggedTime;
+    public float lastTimeIChangedTarget;
     //Time tagTimeOut;
     private void Start()
     {
@@ -30,17 +31,27 @@ public class TagYoureIt : MonoBehaviour
             {
                 var control = GetComponent<AICharacterControl>();
                 control.target = target.transform;
+                ChooseATarget();// possibly pick a new target
             }
             else
             {
                 if(HasEnoughTimeElapsed() == true)
-                { 
-                    target = gm.FindNextTarget(this);
+                {
+                    ChooseATarget();
                 }
             }
         }
         else // todo, avoid
         { 
+        }
+    }
+
+    void ChooseATarget()
+    {
+        if (Time.time - lastTimeIChangedTarget > 2.0f)
+        {
+            target = gm.FindNextTarget(this);
+            lastTimeIChangedTarget = Time.time;
         }
     }
 
