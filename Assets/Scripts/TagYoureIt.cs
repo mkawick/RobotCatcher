@@ -17,6 +17,7 @@ public class TagYoureIt : MonoBehaviour
 
     public float lastTaggedTime;
     public float lastTimeIChangedTarget;
+    public float waitTimeBeforeChangingTarget = 2.0f;
     //Time tagTimeOut;
     private void Start()
     {
@@ -56,23 +57,47 @@ public class TagYoureIt : MonoBehaviour
         if (autoTarget == false)
             return;
 
-        if (Time.time - lastTimeIChangedTarget > 2.0f)
+        if (Time.time - lastTimeIChangedTarget > waitTimeBeforeChangingTarget)
         {
-            Vector3 line = target.transform.position- this.transform.position;
-            Vector3 direction = UnityEngine.Random.onUnitSphere;
+            Vector3 dirToTarget = -(this.transform.position - target.transform.position);
+            dirToTarget.y = 0;
+            dirToTarget.Normalize();
 
-            //target = transform;
-            float dist = 5.0f;
-            direction *= dist;
-            var control = GetComponent<AICharacterControl>();
-            control.SetTarget(direction);
-            lastTimeIChangedTarget = Time.time;
+            Vector3 normalizedDirection;
+            do
+            {
+                normalizedDirection = UnityEngine.Random.onUnitSphere;
+                normalizedDirection.y = 0;
+                normalizedDirection.Normalize();
+                
+
+            } while (Vector3.Dot(dirToTarget, normalizedDirection) > 0);
+
+
+             SetTargetLocation(normalizedDirection);
         }
+    }
+
+    void ChooseInitialDirection()
+    {
+        Vector3 normalizedDirection = -(this.transform.position - target.transform.position); 
+        normalizedDirection.y = 0;// no height
+        normalizedDirection.Normalize();
+        SetTargetLocation(normalizedDirection);
+
+    }
+    void SetTargetLocation(Vector3 normalizedDirection)
+    {
+        float dist = 5.0f;
+        normalizedDirection *= dist;
+        var control = GetComponent<AICharacterControl>();
+        control.SetTarget(normalizedDirection);
+        lastTimeIChangedTarget = Time.time;
     }
 
     void ChooseATarget()
     {
-        if (Time.time - lastTimeIChangedTarget > 2.0f)
+        if (Time.time - lastTimeIChangedTarget > waitTimeBeforeChangingTarget)
         {
             target = gm.FindNextTarget(this);
             lastTimeIChangedTarget = Time.time;
@@ -105,6 +130,9 @@ public class TagYoureIt : MonoBehaviour
         target = null;
         var control = GetComponent<AICharacterControl>();
         control.SetTarget(null);
+
+        // we want to find a new target immediately. // two seconds ago
+        lastTimeIChangedTarget = Time.time - waitTimeBeforeChangingTarget;
     }
 }
 
