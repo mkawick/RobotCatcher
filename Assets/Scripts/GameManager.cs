@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public TagYoureIt FindNextTarget(TagYoureIt fromPlayer)
+    public TagYoureIt FindNextTarget(TagYoureIt fromPlayer, TagYoureIt lastTarget = null)
     {
         float smallestDist = 1000;
         TagYoureIt target = null;
         foreach ( var tagee in tagPlayers)
         {
-            if(tagee != fromPlayer)
+            if(tagee != fromPlayer && tagee != lastTarget)
             {
                 float dist = (fromPlayer.transform.position - tagee.transform.position).magnitude;
                 if (smallestDist > dist)

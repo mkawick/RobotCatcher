@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class BotAttacks : MonoBehaviour
 {
     TagYoureIt bot;
+    //TagYoureIt las;
     AICharacterControl aiController;
     //static public float distToTag = 1.1f;
     // Start is called before the first frame update

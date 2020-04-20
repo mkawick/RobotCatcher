@@ -14,6 +14,7 @@ public class TagYoureIt : MonoBehaviour
 
     public Renderer modelRenderer;
     TagYoureIt target;
+    internal TagYoureIt whoTaggedMeLast;
 
     public float lastTaggedTime;
     public float lastTimeIChangedTarget;
@@ -99,7 +100,7 @@ public class TagYoureIt : MonoBehaviour
     {
         if (Time.time - lastTimeIChangedTarget > waitTimeBeforeChangingTarget)
         {
-            target = gm.FindNextTarget(this);
+            target = gm.FindNextTarget(this, whoTaggedMeLast);
             lastTimeIChangedTarget = Time.time;
         }
     }
@@ -120,6 +121,8 @@ public class TagYoureIt : MonoBehaviour
         target = null;
         var control = GetComponent<AICharacterControl>();
         control.SetTarget(null);
+
+        whoTaggedMeLast = playerWhoTouchedYou;
 
         lastTaggedTime = Time.time;
     }
