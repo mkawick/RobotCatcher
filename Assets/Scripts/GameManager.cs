@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     internal float tagTimeOut = 3.0f;
+
+    [SerializeField]
+    internal float  distToTag = 1.1f;
     // Start is called before the first frame update
     void Start()
     {

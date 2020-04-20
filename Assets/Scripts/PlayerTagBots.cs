@@ -17,8 +17,14 @@ public class PlayerTagBots : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) == true && player.amIIt == true)
         {
             TagYoureIt target = player.gm.FindNextTarget(player);
-            player.Untag();
-            target.YoureIt(player);
+            if (target == null)
+                return;
+            
+            if (player.gm.distToTag > (target.transform.position-transform.position).magnitude)
+            {
+                player.Untag();
+                target.YoureIt(player);
+            }
         }
         else
         {
