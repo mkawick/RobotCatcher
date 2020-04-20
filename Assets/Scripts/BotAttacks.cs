@@ -7,6 +7,7 @@ public class BotAttacks : MonoBehaviour
 {
     TagYoureIt bot;
     AICharacterControl aiController;
+    static public float distToTag = 1.3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class BotAttacks : MonoBehaviour
     {
         if (bot.amIIt == true && aiController.target != null)
         {
-            if((aiController.target.position - this.transform.position).magnitude < 2)
+            if((aiController.target.position - this.transform.position).magnitude < distToTag)
             {
                 TagYoureIt tagger = aiController.target.gameObject.GetComponent<TagYoureIt>();
                 bot.Untag();

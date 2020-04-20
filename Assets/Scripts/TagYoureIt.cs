@@ -59,7 +59,7 @@ public class TagYoureIt : MonoBehaviour
 
         if (Time.time - lastTimeIChangedTarget > waitTimeBeforeChangingTarget)
         {
-            Vector3 dirToTarget = -(this.transform.position - target.transform.position);
+            Vector3 dirToTarget = (target.transform.position - this.transform.position);
             dirToTarget.y = 0;
             dirToTarget.Normalize();
 
@@ -80,7 +80,7 @@ public class TagYoureIt : MonoBehaviour
 
     void ChooseInitialDirection()
     {
-        Vector3 normalizedDirection = -(this.transform.position - target.transform.position); 
+        Vector3 normalizedDirection = (target.transform.position - this.transform.position);
         normalizedDirection.y = 0;// no height
         normalizedDirection.Normalize();
         SetTargetLocation(normalizedDirection);
