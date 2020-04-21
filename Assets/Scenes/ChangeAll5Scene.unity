@@ -339,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
+      objectReference: {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
     - target: {fileID: 436670, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.67
@@ -605,7 +605,7 @@ PrefabInstance:
     - target: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
+      objectReference: {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
     - target: {fileID: 436670, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.59
@@ -1548,8 +1548,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friendlinessMats:
+  - {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
   - {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
-  - {fileID: 2100000, guid: 8a60d24fc6acf4543845655f808a5911, type: 2}
 --- !u!137 &833892184 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a,
@@ -2584,6 +2584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
+    - target: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
     - target: {fileID: 436670, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -2809,9 +2813,10 @@ MonoBehaviour:
   - {fileID: 1569805513}
   - {fileID: 660019562}
   - {fileID: 1264719586}
+  - {fileID: 1752723534}
   matsForTagged:
-  - {fileID: 2100000, guid: 30c24e977a8d2a943bc96b237d81e4dc, type: 2}
   - {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
+  - {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
   tagTimeOut: 3
   distToTag: 1.2
 --- !u!114 &1503849855
@@ -3661,7 +3666,7 @@ PrefabInstance:
     - target: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
+      objectReference: {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
     - target: {fileID: 436670, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.57
