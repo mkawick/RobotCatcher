@@ -139,11 +139,13 @@ public class SwarmBot : MonoBehaviour
         var character = GetComponent<ThirdPersonCharacter>();
         if(amITagged)
         {
-            character.m_MoveSpeedMultiplier = 0.4f;
+            character.MoveSpeedMultiplier = 0.4f;
+            character.AnimSpeedMultiplier = 0.8f;
         }
         else 
         {
-            character.m_MoveSpeedMultiplier = 1.2f;
+            character.MoveSpeedMultiplier = 1.2f;
+            character.AnimSpeedMultiplier = 1.2f;
         }
     }
 }

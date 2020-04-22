@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseClick: {fileID: 1979060815}
-  enableClickToMove: 1
+  enableClickToMove: 0
   speedMultiplier: 3
 --- !u!114 &660019560
 MonoBehaviour:
@@ -1562,8 +1562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b3c23c7411dbf4382b8f0c9134796c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surfaceOffset: 1.5
-  setTargetOn: {fileID: 0}
 --- !u!114 &660019561
 MonoBehaviour:
   m_ObjectHideFlags: 0

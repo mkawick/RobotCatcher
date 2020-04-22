@@ -28,7 +28,6 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var control = GetComponent<ThirdPersonCharacter>();
         float h = Input.GetAxis("Horizontal") * speedMultiplier;
         float v = Input.GetAxis("Vertical") * speedMultiplier;
 
@@ -36,9 +35,13 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
         if (Mathf.Abs(h) > epsilon || Mathf.Abs(v) > epsilon)
         {
             Vector3 moveDir = v * Vector3.forward + h * Vector3.right;
+
+            var control = GetComponent<ThirdPersonCharacter>();
+            control.MoveSpeedMultiplier = speedMultiplier;
+            control.AnimSpeedMultiplier = speedMultiplier;
             control.Move(moveDir, false, false);
 
-            Debug.Log("v= " + v + ", h= " + h);
+            //Debug.Log("v= " + v + ", h= " + h);
             ClearExistingTarget();
         }
     }

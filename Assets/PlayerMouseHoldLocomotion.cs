@@ -1,37 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerMouseHoldLocomotion : MonoBehaviour
 {
-    public float surfaceOffset = 1.5f;
-    public GameObject setTargetOn;
-
     // Update is called once per frame
     private void Update()
     {
         bool isButtonHeld = Input.GetMouseButton(0);
-        if (isButtonHeld == false)
+
+        if (isButtonHeld)
         {
-            if (setTargetOn != null)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (!Physics.Raycast(ray, out hit))
             {
-                setTargetOn.SendMessage("SetTarget", null);
+                return;
             }
-            return;
+
+            Vector3 direction = (hit.point - this.transform.position).normalized;
+            //Vector3 moveDir = v * Vector3.forward + h * Vector3.right;
+
+            var control = GetComponent<ThirdPersonCharacter>();
+            control.MoveSpeedMultiplier = 3;
+            control.AnimSpeedMultiplier = 8;
+            control.Move(direction, false, false);
         }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit))
-        {
-            return;
-        }
-        ShowTarget(true); ;
-        Vector3 worldPosition = hit.point + hit.normal * surfaceOffset;
-        //transform.position = 
-        if (setTargetOn != null)
-        {
-            setTargetOn.SendMessage("SetTarget", transform);
-        }
+
+        /*     if (isButtonHeld == false)
+             {
+                 if (setTargetOn != null)
+                 {
+                     setTargetOn.SendMessage("SetTarget", null);
+                 }
+                 return;
+             }
+             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+             RaycastHit hit;
+             if (!Physics.Raycast(ray, out hit))
+             {
+                 return;
+             }
+             ShowTarget(true); ;
+             Vector3 worldPosition = hit.point + hit.normal * surfaceOffset;
+             if (setTargetOn != null)
+             {
+                 setTargetOn.SendMessage("SetTarget", transform);
+             }*/
     }
 
     internal void ShowTarget(bool show)
