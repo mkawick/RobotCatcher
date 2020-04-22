@@ -25,6 +25,12 @@ public class GameManagerBotSwarm : MonoBehaviour
 
     [SerializeField]
     Text scoreField;
+
+    [SerializeField]
+    Text youWin;
+
+    bool gameState = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,8 @@ public class GameManagerBotSwarm : MonoBehaviour
 
     internal void AmIConverted(SwarmBot tagged, bool isConverted)
     {
+        if (gameState == false)
+            return;
         if (isConverted)
             tagged.modelRenderer.material = matsForTagged[0];
         else
@@ -62,6 +70,25 @@ public class GameManagerBotSwarm : MonoBehaviour
                     num++;
             }
             scoreField.text = "Score: " + num;
+            EvalGameState(num);
+        }
+        
+    }
+
+    void EvalGameState( int numTagged)
+    {
+        if (numTagged == bots.Length)
+        {
+             gameState = false;
+        }
+
+        if(gameState == true)
+        {
+            youWin.gameObject.SetActive(false);
+        }
+        else
+        {
+            youWin.gameObject.SetActive(true);
         }
     }
 
