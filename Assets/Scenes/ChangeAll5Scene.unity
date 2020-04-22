@@ -1548,6 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseClick: {fileID: 1979060815}
+  enableClickToMove: 0
   speedMultiplier: 3
 --- !u!114 &660019561
 MonoBehaviour:

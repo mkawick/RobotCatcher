@@ -8,12 +8,21 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
 {
     [SerializeField]
     PlaceTargetWithMouse mouseClick;
+    public bool enableClickToMove = true;
+
     [SerializeField]
     float speedMultiplier = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (enableClickToMove)
+        {
+            mouseClick.enabled = true;
+        }
+        else
+        {
+            mouseClick.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -47,8 +56,7 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
 
     void ClearExistingTarget()
     {
-        /*  var control = GetComponent<AICharacterControl>();
-          control.target = null;*/
+        mouseClick.enabled = false;
         this.SendMessage("SetTarget", this.transform);
         if (mouseClick)
             mouseClick.ShowTarget(false);
