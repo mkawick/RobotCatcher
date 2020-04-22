@@ -41,16 +41,6 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
             Debug.Log("v= " + v + ", h= " + h);
             ClearExistingTarget();
         }
-        /*   if (Input.GetKeyDown(KeyCode.UpArrow) == true)
-           {
-               moveDir = new Vector3(0, 0, 1);
-               control.Move(moveDir, false, false);
-           }
-           if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
-           {
-               moveDir = new Vector3(1, 0, 0);
-               control.Move(moveDir, false, false);
-           }*/
     }
 
 
