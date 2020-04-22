@@ -1931,7 +1931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &910574037
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1964,7 +1964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.23584905, g: 0.72232413, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2992,6 +2992,7 @@ MonoBehaviour:
   - {fileID: 2112497483}
   - {fileID: 494182815}
   scoreField: {fileID: 490174762}
+  youWin: {fileID: 910574038}
 --- !u!1001 &1510415881
 PrefabInstance:
   m_ObjectHideFlags: 0
