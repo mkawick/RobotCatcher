@@ -12,9 +12,10 @@ public class SwarmBot : MonoBehaviour
     public PlayerTagSwarmBot target;
 
     [HideInInspector]
-    public float lastTaggedTime;
-    [HideInInspector]
-    public float lastTimeIChangedTarget;
+    public float lastTimeIStartedChasing;
+    float whenCanIStartChasing;
+    float whenCanIStartRunningAway;
+
     public float waitTimeBeforeChangingTarget = 2.0f;
     AICharacterControl control;
     public float speedWhenTagged = 0.4f;
@@ -33,10 +34,12 @@ public class SwarmBot : MonoBehaviour
     {
         if (amITagged == true && isGameRunning == true)
         {
-            if (ChasePlayer() == true)
+            if (HasEnoughTimeExpired() == true)
             {
+                ChasePlayer();
                 if (IsPlayerCloseEnoughToTag())
                 {
+                    //Debug.Log("Update::untag coming");
                     Untag();
                 }
             }
@@ -53,42 +56,42 @@ public class SwarmBot : MonoBehaviour
 
     bool IsPlayerCloseEnoughToTag()
     {
-        if (HasEnoughTimeExpired() &&
-            (target.transform.position - this.transform.position).magnitude < gm.distToTag )
-                return true;
+        if ((target.transform.position - this.transform.position).magnitude < gm.distToTag)
+        {
+            //Debug.Log("IsPlayerCloseEnoughToTag::true");
+            return true;
+        }
+        //Debug.Log("IsPlayerCloseEnoughToTag::false");
         return false;
     }
 
-    bool ChasePlayer()
+    void ChasePlayer()
     {
-        if(HasEnoughTimeExpired())
+        if (target == null)
         {
-            if (target == null)
-            {
-                target = gm.GetPlayer();
-                UpateSpeed();
-                GetControl().SetTarget(target.transform);
-            }
-            return true;
+            target = gm.GetPlayer();
+            UpateSpeed();
+            GetControl().SetTarget(target.transform);
         }
-        return false;
+        //Debug.Log("ChasePlayer");
     }
 
     bool HasEnoughTimeExpired()
     {
-        if (Time.time - lastTimeIChangedTarget > waitTimeBeforeChangingTarget)
+        if (Time.time > whenCanIStartChasing)
         {
+            //Debug.Log("HasEnoughTimeExpired::true");
             return true;
         }
+        //Debug.Log("HasEnoughTimeExpired::false");
         return false;
     }
 
     void RunAway()
     {
-       /* if (autoTarget == false)
-            return;*/
+        //Debug.Log("RunAway");
 
-        if (HasEnoughTimeExpired())
+        if (Time.time > whenCanIStartRunningAway)
         {
             Vector3 dirToTarget = (target.transform.position - this.transform.position);
             dirToTarget.y = 0;
@@ -105,18 +108,20 @@ public class SwarmBot : MonoBehaviour
 
             UpateSpeed();
             SetTargetLocation(normalizedDirection);
+            whenCanIStartRunningAway = Time.time + 2.0f;
         }
     }
     void SetTargetLocation(Vector3 normalizedDirection)
     {
+        //Debug.Log("SetTargetLocation");
         float dist = 5.0f;
         normalizedDirection *= dist;
         GetControl().SetTarget(normalizedDirection);
-        lastTimeIChangedTarget = Time.time;
     }
 
     public void TagMe()
     {
+        //Debug.Log("TagMe");
         if (isGameRunning == false)
             return;
 
@@ -125,11 +130,12 @@ public class SwarmBot : MonoBehaviour
         target = null;
         GetControl().SetTarget(null);
 
-        lastTaggedTime = Time.time;
+        whenCanIStartChasing = Time.time + 2.0f;
     }
 
     public void Untag()
     {
+        //Debug.Log("Untag");
         if (isGameRunning == false)
             return;
 
@@ -139,8 +145,7 @@ public class SwarmBot : MonoBehaviour
 
 
         GetControl().SetTarget(null);
-
-        lastTaggedTime = Time.time;
+        whenCanIStartRunningAway = Time.time + 2.0f;
     }
 
     void UpateSpeed()

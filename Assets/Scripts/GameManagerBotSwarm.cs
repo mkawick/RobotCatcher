@@ -183,6 +183,7 @@ public class GameManagerBotSwarm : MonoBehaviour
 
     void EvalGameState(int numTagged, int numBots)
     {
+        //return;
         if (numTagged == numBots)
         {
             whenDoesNextStateChangeOccur = Time.time;
