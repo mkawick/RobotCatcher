@@ -15,7 +15,7 @@ public class GameManagerBotSwarm : MonoBehaviour
     internal float tagTimeOut = 3.0f;
 
     [SerializeField]
-    internal float distToTag = 1.1f;
+    internal float distToTag = 1.2f;
 
     [SerializeField]
     PlayerTagSwarmBot player;

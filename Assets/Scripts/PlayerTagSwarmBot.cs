@@ -27,4 +27,19 @@ public class PlayerTagSwarmBot : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SwarmBot target = collision.gameObject.GetComponent<SwarmBot>();
+        if(target != null)
+        {
+            Vector3 dirToBot = target.transform.position - transform.position;
+            dirToBot.y = 0;// remove any height differences
+            float angle = Vector3.Angle(dirToBot, transform.forward);
+            if(angle >-30 && angle < 30)
+            {
+                target.TagMe();
+            }
+        }
+    }
 }
