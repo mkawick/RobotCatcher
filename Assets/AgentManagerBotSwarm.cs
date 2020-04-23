@@ -61,4 +61,12 @@ public class AgentManagerBotSwarm : MonoBehaviour
     {
         return bots;
     }
+
+    public void MakeOpponentsFaster(float amount)
+    {
+        foreach (var tagee in bots)
+        {
+            tagee.GetControl().character.ForwardSpeedMultiplier += amount;
+        }
+    }
 }

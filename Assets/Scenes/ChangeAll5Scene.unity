@@ -120,6 +120,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: ffa589d694dcc914c847596f227b8fad, type: 2}
+--- !u!1 &166981449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166981450}
+  - component: {fileID: 166981452}
+  - component: {fileID: 166981451}
+  m_Layer: 5
+  m_Name: CountDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &166981450
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166981449}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1396692002}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 950, y: 750}
+  m_SizeDelta: {x: 380, y: 46}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &166981451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166981449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Seconds
+--- !u!222 &166981452
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166981449}
+  m_CullTransparentMesh: 0
 --- !u!1 &205305462
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,37 +442,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amIIt: 0
-  autoTarget: 1
-  gm: {fileID: 1503849854}
-  modelRenderer: {fileID: 1332010058}
+  autoTarget: 0
+  gm: {fileID: 0}
+  modelRenderer: {fileID: 0}
   lastTaggedTime: 0
   lastTimeIChangedTarget: 0
-  waitTimeBeforeChangingTarget: 1.6
---- !u!114 &244658738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244658733}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1363f5531be6e498b9c388af74a94d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFriendly: 0
-  navNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  playerNode: {fileID: 660019558}
-  modelRenderer: {fileID: 1332010058}
-  manager: {fileID: 800964886}
-  navNodeIndex: 0
-  navNodeDirection: 1
-  ClosePlayerDist: 5
-  NodeDistMin: 8
-  NodeDistMax: 11
-  minDistToWayPoint: 1.3
+  waitTimeBeforeChangingTarget: 2
 --- !u!137 &249176636 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13772780, guid: 54eb5844754051b40a918a84c33b7c1a,
@@ -489,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Center.x
@@ -863,7 +917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 25}
+  m_AnchoredPosition: {x: 100, y: 42.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490174762
@@ -888,10 +942,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -997,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Center.x
@@ -1402,37 +1456,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amIIt: 0
-  autoTarget: 1
-  gm: {fileID: 1503849854}
-  modelRenderer: {fileID: 494182813}
+  autoTarget: 0
+  gm: {fileID: 0}
+  modelRenderer: {fileID: 0}
   lastTaggedTime: 0
   lastTimeIChangedTarget: 0
-  waitTimeBeforeChangingTarget: 1.6
---- !u!114 &494182818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494182814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1363f5531be6e498b9c388af74a94d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFriendly: 0
-  navNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  playerNode: {fileID: 660019558}
-  modelRenderer: {fileID: 494182813}
-  manager: {fileID: 800964886}
-  navNodeIndex: 0
-  navNodeDirection: 1
-  ClosePlayerDist: 5
-  NodeDistMin: 8
-  NodeDistMax: 11
-  minDistToWayPoint: 1.3
+  waitTimeBeforeChangingTarget: 2
 --- !u!1 &502104301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,7 +2412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Radius
-      value: 0.2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Center.x
@@ -2925,6 +2954,7 @@ RectTransform:
   - {fileID: 490174761}
   - {fileID: 910574037}
   - {fileID: 1527504923}
+  - {fileID: 166981450}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2980,7 +3010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathContainer: {fileID: 0}
   tagPlayers:
-  - {fileID: 1569805513}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -3006,11 +3036,15 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
   tagTimeOut: 3
   distToTag: 1.1
+  speedIncreasePerRound: 0.3
+  numSecondsLostPerRound: 2
+  minSecondsLostPerRound: 10
   player: {fileID: 660019564}
   botManager: {fileID: 800964887}
   scoreField: {fileID: 490174762}
   youWin: {fileID: 910574038}
   startGame: {fileID: 1527504924}
+  countDown: {fileID: 166981451}
 --- !u!1001 &1510415881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3100,7 +3134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Center.x
@@ -3718,47 +3752,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1569805504}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1363f5531be6e498b9c388af74a94d, type: 3}
+  m_Script: {fileID: 11500000, guid: 388c64ffc92ca654b93981a437c6699a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFriendly: 0
-  navNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  playerNode: {fileID: 660019558}
-  modelRenderer: {fileID: 249176636}
-  manager: {fileID: 800964886}
-  navNodeIndex: 0
-  navNodeDirection: 1
-  ClosePlayerDist: 5
-  NodeDistMin: 8
-  NodeDistMax: 11
-  minDistToWayPoint: 1.3
+  amIIt: 0
+  autoTarget: 0
+  gm: {fileID: 0}
+  modelRenderer: {fileID: 0}
+  lastTaggedTime: 0
+  lastTimeIChangedTarget: 0
+  waitTimeBeforeChangingTarget: 2
 --- !u!4 &1569805511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 436670, guid: 54eb5844754051b40a918a84c33b7c1a,
     type: 3}
   m_PrefabInstance: {fileID: 350803568}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1569805513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569805504}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388c64ffc92ca654b93981a437c6699a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amIIt: 0
-  autoTarget: 1
-  gm: {fileID: 1503849854}
-  modelRenderer: {fileID: 249176636}
-  lastTaggedTime: 0
-  lastTimeIChangedTarget: 0
-  waitTimeBeforeChangingTarget: 1.6
 --- !u!114 &1569805514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4145,7 +4154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Radius
-      value: 0.12
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 13654204, guid: 54eb5844754051b40a918a84c33b7c1a, type: 3}
       propertyPath: m_Center.x
@@ -4550,37 +4559,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amIIt: 0
-  autoTarget: 1
-  gm: {fileID: 1503849854}
-  modelRenderer: {fileID: 2112497481}
+  autoTarget: 0
+  gm: {fileID: 0}
+  modelRenderer: {fileID: 0}
   lastTaggedTime: 0
   lastTimeIChangedTarget: 0
-  waitTimeBeforeChangingTarget: 1.6
---- !u!114 &2112497486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112497482}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1363f5531be6e498b9c388af74a94d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFriendly: 0
-  navNodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  playerNode: {fileID: 660019558}
-  modelRenderer: {fileID: 2112497481}
-  manager: {fileID: 800964886}
-  navNodeIndex: 0
-  navNodeDirection: 1
-  ClosePlayerDist: 5
-  NodeDistMin: 8
-  NodeDistMax: 11
-  minDistToWayPoint: 1.3
+  waitTimeBeforeChangingTarget: 2
 --- !u!1 &2126840320
 GameObject:
   m_ObjectHideFlags: 0

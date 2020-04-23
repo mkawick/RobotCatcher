@@ -6,6 +6,9 @@ public class PlayerTagSwarmBot : MonoBehaviour
 {
     [SerializeField]
     GameManagerBotSwarm gm;
+
+    [SerializeField]
+    float  angleToTagInDegrees = 45;
     void Start()
     {
         
@@ -36,7 +39,7 @@ public class PlayerTagSwarmBot : MonoBehaviour
             Vector3 dirToBot = target.transform.position - transform.position;
             dirToBot.y = 0;// remove any height differences
             float angle = Vector3.Angle(dirToBot, transform.forward);
-            if(angle >-30 && angle < 30)
+            if(angle < angleToTagInDegrees)
             {
                 target.TagMe();
             }

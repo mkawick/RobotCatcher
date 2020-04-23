@@ -158,7 +158,7 @@ public class SwarmBot : MonoBehaviour
         }
     }
 
-    AICharacterControl GetControl()
+    public AICharacterControl GetControl()
     {
         if (control == null)
             control = GetComponent<AICharacterControl>();

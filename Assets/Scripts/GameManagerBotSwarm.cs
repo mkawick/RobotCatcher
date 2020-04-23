@@ -18,6 +18,13 @@ public class GameManagerBotSwarm : MonoBehaviour
     internal float distToTag = 1.2f;
 
     [SerializeField]
+    float speedIncreasePerRound = 0.3f;
+    [SerializeField]
+    float numSecondsLostPerRound = 2f;
+    [SerializeField]
+    float minSecondsLostPerRound = 10;
+
+    [SerializeField]
     PlayerTagSwarmBot player;
 
     [SerializeField]
@@ -33,6 +40,8 @@ public class GameManagerBotSwarm : MonoBehaviour
     Text youWin;
     [SerializeField]
     Text startGame;
+    [SerializeField]
+    Text countDown;
 
     enum GameStates
     {
@@ -43,6 +52,7 @@ public class GameManagerBotSwarm : MonoBehaviour
     GameStates gameState = GameStates.Beginning;
     float whenDoesNextStateChangeOccur = 0;
     float whenDidLastStateChangeOccur = 0;
+    float normalRoundTime  = 30;
 
     int permScore = 0;
 
@@ -75,8 +85,14 @@ public class GameManagerBotSwarm : MonoBehaviour
                 case GameStates.Beginning:
                     {
                         gameState = GameStates.NormalPlay;
-                        whenDoesNextStateChangeOccur = Time.time + 30.0f;// 30 seconds to finish the round
+                        whenDoesNextStateChangeOccur = Time.time + normalRoundTime;// 30 seconds to finish the round
+
+                        normalRoundTime -= numSecondsLostPerRound;
+                        if (normalRoundTime <minSecondsLostPerRound)
+                            normalRoundTime = minSecondsLostPerRound;
+
                         botManager.StartGame(true);
+                        botManager.MakeOpponentsFaster(speedIncreasePerRound);
                     }
                     break;
                 case GameStates.NormalPlay:
@@ -121,6 +137,18 @@ public class GameManagerBotSwarm : MonoBehaviour
             else
             {
                 startGame.gameObject.SetActive(false);
+            }
+        }
+        if(countDown != null)
+        {
+            if (gameState == GameStates.NormalPlay)
+            {
+                countDown.gameObject.SetActive(true);
+                countDown.text = "Seconds left: " + (int)(whenDoesNextStateChangeOccur - Time.time + 0.5);// rounding
+            }
+            else
+            {
+                countDown.gameObject.SetActive(false);
             }
         }
         if (gameState == GameStates.NormalPlay)

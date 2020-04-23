@@ -45,6 +45,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 		public float MoveSpeedMultiplier { get { return m_MoveSpeedMultiplier; } set { m_MoveSpeedMultiplier = value; } }
 		public float AnimSpeedMultiplier { get { return m_AnimSpeedMultiplier; } set { m_AnimSpeedMultiplier = value; } }
+		public float ForwardSpeedMultiplier { get { return forwardSpeedMultiplier; } set { forwardSpeedMultiplier = value; } }
 
 		public void Move(Vector3 move, bool crouch, bool jump)
 		{
