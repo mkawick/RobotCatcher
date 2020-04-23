@@ -19,18 +19,19 @@ public class SwarmBot : MonoBehaviour
     AICharacterControl control;
     public float speedWhenTagged = 0.4f;
     public float speedWhenRunningAway = 1.2f;
+    public bool isGameRunning = false;
     //var control = GetComponent<AICharacterControl>();
 
     void Start()
     {
+        GetControl();
         UpateSpeed();
-        control = GetComponent<AICharacterControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (amITagged == true)
+        if (amITagged == true && isGameRunning == true)
         {
             if (ChasePlayer() == true)
             {
@@ -66,7 +67,7 @@ public class SwarmBot : MonoBehaviour
             {
                 target = gm.GetPlayer();
                 UpateSpeed();
-                control.SetTarget(target.transform);
+                GetControl().SetTarget(target.transform);
             }
             return true;
         }
@@ -110,26 +111,34 @@ public class SwarmBot : MonoBehaviour
     {
         float dist = 5.0f;
         normalizedDirection *= dist;
-        control.SetTarget(normalizedDirection);
+        GetControl().SetTarget(normalizedDirection);
         lastTimeIChangedTarget = Time.time;
     }
 
     public void TagMe()
     {
+        if (isGameRunning == false)
+            return;
+
         amITagged = true;
         gm.AmIConverted(this, amITagged);
         target = null;
-        control.SetTarget(null);
+        GetControl().SetTarget(null);
 
         lastTaggedTime = Time.time;
     }
 
-    void Untag()
+    public void Untag()
     {
+        if (isGameRunning == false)
+            return;
+
         amITagged = false;
         gm.AmIConverted(this, amITagged);
         target = null;
-        control.SetTarget(null);
+
+
+        GetControl().SetTarget(null);
 
         lastTaggedTime = Time.time;
     }
@@ -147,5 +156,12 @@ public class SwarmBot : MonoBehaviour
             character.MoveSpeedMultiplier = 1.2f;
             character.AnimSpeedMultiplier = 1.2f;
         }
+    }
+
+    AICharacterControl GetControl()
+    {
+        if (control == null)
+            control = GetComponent<AICharacterControl>();
+        return control;
     }
 }
