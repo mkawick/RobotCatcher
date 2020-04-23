@@ -405,8 +405,7 @@ MonoBehaviour:
   gm: {fileID: 1503849855}
   modelRenderer: {fileID: 1332010058}
   target: {fileID: 660019564}
-  lastTaggedTime: 0
-  lastTimeIChangedTarget: 0
+  lastTimeIStartedChasing: 0
   waitTimeBeforeChangingTarget: 5
   speedWhenTagged: 0.4
   speedWhenRunningAway: 1.2
@@ -1425,8 +1424,7 @@ MonoBehaviour:
   gm: {fileID: 1503849855}
   modelRenderer: {fileID: 494182813}
   target: {fileID: 0}
-  lastTaggedTime: 0
-  lastTimeIChangedTarget: 0
+  lastTimeIStartedChasing: 0
   waitTimeBeforeChangingTarget: 5
   speedWhenTagged: 0.4
   speedWhenRunningAway: 1.2
@@ -1620,6 +1618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1503849855}
+  angleToTagInDegrees: 45
 --- !u!1 &667807271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,8 +3795,7 @@ MonoBehaviour:
   gm: {fileID: 1503849855}
   modelRenderer: {fileID: 249176636}
   target: {fileID: 0}
-  lastTaggedTime: 0
-  lastTimeIChangedTarget: 0
+  lastTimeIStartedChasing: 0
   waitTimeBeforeChangingTarget: 5
   speedWhenTagged: 0.4
   speedWhenRunningAway: 1.2
@@ -4528,8 +4526,7 @@ MonoBehaviour:
   gm: {fileID: 1503849855}
   modelRenderer: {fileID: 2112497481}
   target: {fileID: 0}
-  lastTaggedTime: 0
-  lastTimeIChangedTarget: 0
+  lastTimeIStartedChasing: 0
   waitTimeBeforeChangingTarget: 5
   speedWhenTagged: 0.4
   speedWhenRunningAway: 1.2
