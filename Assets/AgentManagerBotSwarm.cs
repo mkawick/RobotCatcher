@@ -8,6 +8,8 @@ public class AgentManagerBotSwarm : MonoBehaviour
     SwarmBot[] bots;
 
     public bool DoBotsReturnToUntagged = true;
+    public float runAwayDistanceMultiplier = 5.0f;
+    public float runAwayDistMultChangePerRound = 0.4f;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +72,7 @@ public class AgentManagerBotSwarm : MonoBehaviour
         foreach (var tagee in bots)
         {
             tagee.GetControl().character.ForwardSpeedMultiplier += amount;
-        }
+            runAwayDistanceMultiplier += runAwayDistMultChangePerRound;
+}
     }
 }

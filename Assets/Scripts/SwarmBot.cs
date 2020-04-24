@@ -122,7 +122,7 @@ public class SwarmBot : MonoBehaviour
     void SetTargetLocation(Vector3 normalizedDirection)
     {
         //Debug.Log("SetTargetLocation");
-        float dist = 5.0f;
+        float dist = am.runAwayDistanceMultiplier;
         normalizedDirection *= dist;
         GetControl().SetTarget(normalizedDirection);
     }

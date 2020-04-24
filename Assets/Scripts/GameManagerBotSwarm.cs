@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class GameManagerBotSwarm : MonoBehaviour
 {
-   /* [SerializeField]
-    TagYoureIt[] tagPlayers;*/
+    int roundNumber = 1;
+    
 
+    
     [SerializeField]
     Material[] matsForTagged;
 
@@ -30,8 +31,10 @@ public class GameManagerBotSwarm : MonoBehaviour
     [SerializeField]
     AgentManagerBotSwarm botManager;
 
-    int roundNumber = 1;
 
+    float fieldSizeScale = 1;
+    [SerializeField]
+    GameObject gameField;
 
 
     [SerializeField]
@@ -77,6 +80,7 @@ public class GameManagerBotSwarm : MonoBehaviour
         gameState = GameStates.Beginning;
         whenDoesNextStateChangeOccur = Time.time + 2.0f;
         whenDidLastStateChangeOccur = Time.time;
+        //ScaleTheField(gameField, 2);
     }
 
     // Update is called once per frame
@@ -131,11 +135,25 @@ public class GameManagerBotSwarm : MonoBehaviour
                         roundNumber++;
                         gameState = GameStates.Beginning;
                         whenDoesNextStateChangeOccur = Time.time + 4.0f;
+                        ScaleTheField(gameField, 0.1f);
                     }
                     break;
             }
         }
         //gameState = GameStates.RoundComplete;
+    }
+
+    void ScaleTheField(GameObject field, float percentage = 0.1f)
+    {
+        if (field != null)
+        {
+            float newFieldScale = fieldSizeScale * (1.0f + percentage);
+            fieldSizeScale = newFieldScale;
+            Vector3 scale = field.transform.localScale;
+            scale *= fieldSizeScale;
+            iTween.ScaleTo(gameField, scale, 4);
+            //field.transform.localScale = scale;
+        }
     }
 
     void UpdateGameUIState()
