@@ -43,16 +43,28 @@ public class GameManagerBotSwarm : MonoBehaviour
     [SerializeField]
     Text countDown;
 
+    //public AudioClip ac;
+    public AudioSource [] audioSource;
+
     enum GameStates
     {
         Beginning,
         NormalPlay,
         RoundComplete
     }
+    internal enum AudioClipToPlay
+    {
+        AgentTagged,
+        PlayerBumped,
+        EndGame,
+        StartGame,
+        TimeTick
+    }
     GameStates gameState = GameStates.Beginning;
     float whenDoesNextStateChangeOccur = 0;
     float whenDidLastStateChangeOccur = 0;
     float normalRoundTime  = 30;
+    int timeRemainingTickCounter = 0;
 
     int permScore = 0;
 
@@ -73,7 +85,17 @@ public class GameManagerBotSwarm : MonoBehaviour
         UpdateGameUIState();
         TransitionGameState();
     }
+     
+    internal bool PlaySound (AudioClipToPlay clipId)
+    {
+        if (audioSource != null && audioSource.Length > (int) clipId)
+        {
+            audioSource[(int)clipId].Play();
+            return true;
+        }
 
+        return false;
+    }
 
     void TransitionGameState()
     { 
@@ -92,6 +114,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                             normalRoundTime = minSecondsLostPerRound;
 
                         botManager.StartGame(true);
+                        PlaySound(AudioClipToPlay.StartGame);
                         botManager.MakeOpponentsFaster(speedIncreasePerRound);
                     }
                     break;
@@ -100,6 +123,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                         gameState = GameStates.RoundComplete;
                         whenDoesNextStateChangeOccur = Time.time + 5.0f;
                         botManager.StartGame(false);
+                        PlaySound(AudioClipToPlay.EndGame);
                     }
                     break;
                 case GameStates.RoundComplete:
@@ -144,7 +168,13 @@ public class GameManagerBotSwarm : MonoBehaviour
             if (gameState == GameStates.NormalPlay)
             {
                 countDown.gameObject.SetActive(true);
-                countDown.text = "Seconds left: " + (int)(whenDoesNextStateChangeOccur - Time.time + 0.5);// rounding
+                int secondsLeft = (int)(whenDoesNextStateChangeOccur - Time.time + 0.5);
+                countDown.text = "Seconds left: " + secondsLeft;// rounding
+                if (secondsLeft != timeRemainingTickCounter)
+                {
+                    timeRemainingTickCounter = secondsLeft;
+                    PlaySound(AudioClipToPlay.TimeTick);
+                }
             }
             else
             {

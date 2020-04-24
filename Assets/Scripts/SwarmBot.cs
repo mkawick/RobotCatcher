@@ -18,6 +18,8 @@ public class SwarmBot : MonoBehaviour
     float whenCanIStartRunningAway;
 
     public float waitTimeBeforeChangingTarget = 2.0f;
+    public float bumpTimeout = 0.3f;
+    public float nextBumpTimePossible = 0;
     AICharacterControl control;
     public float speedWhenTagged = 0.4f;
     public float speedWhenRunningAway = 1.2f;
@@ -38,10 +40,15 @@ public class SwarmBot : MonoBehaviour
             if (HasEnoughTimeExpired() == true)
             {
                 ChasePlayer();
-                if (IsPlayerCloseEnoughToTag())
+                if (IsPlayerCloseEnoughToTag() && Time.time > nextBumpTimePossible)
                 {
-                    //Debug.Log("Update::untag coming");
-                    Untag();
+                    nextBumpTimePossible = Time.time + bumpTimeout;
+                    if (am.DoBotsReturnToUntagged == true)
+                    {
+                        //Debug.Log("Update::untag coming");
+                        Untag();
+                    }
+                    gm.PlaySound(GameManagerBotSwarm.AudioClipToPlay.PlayerBumped);
                 }
             }
         }
@@ -57,9 +64,6 @@ public class SwarmBot : MonoBehaviour
 
     bool IsPlayerCloseEnoughToTag()
     {
-        if (am.DoBotsReturnToUntagged == false)
-            return false;
-
         if ((target.transform.position - this.transform.position).magnitude < gm.distToTag)
         {
             //Debug.Log("IsPlayerCloseEnoughToTag::true");

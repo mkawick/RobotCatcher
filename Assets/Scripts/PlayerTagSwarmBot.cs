@@ -39,9 +39,10 @@ public class PlayerTagSwarmBot : MonoBehaviour
             Vector3 dirToBot = target.transform.position - transform.position;
             dirToBot.y = 0;// remove any height differences
             float angle = Vector3.Angle(dirToBot, transform.forward);
-            if(angle < angleToTagInDegrees)
+            if(angle < angleToTagInDegrees && target.amITagged == false)
             {
                 target.TagMe();
+                gm.PlaySound(GameManagerBotSwarm.AudioClipToPlay.AgentTagged);
             }
         }
     }
