@@ -7,6 +7,8 @@ public class AgentManagerBotSwarm : MonoBehaviour
     [SerializeField]
     SwarmBot[] bots;
 
+    public bool DoBotsReturnToUntagged = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class AgentManagerBotSwarm : MonoBehaviour
         foreach (var tagee in bots)
         {
             tagee.gm = gm;
+            tagee.am = this;
         }
     }
 

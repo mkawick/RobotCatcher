@@ -7,9 +7,10 @@ public class SwarmBot : MonoBehaviour
 {
     public bool amITagged;
     //public bool autoTarget = false;
-    public GameManagerBotSwarm gm;
+    internal GameManagerBotSwarm gm;
     public Renderer modelRenderer;
-    public PlayerTagSwarmBot target;
+    internal PlayerTagSwarmBot target;
+    internal AgentManagerBotSwarm am;
 
     [HideInInspector]
     public float lastTimeIStartedChasing;
@@ -20,7 +21,7 @@ public class SwarmBot : MonoBehaviour
     AICharacterControl control;
     public float speedWhenTagged = 0.4f;
     public float speedWhenRunningAway = 1.2f;
-    public bool isGameRunning = false;
+    internal bool isGameRunning = false;
     //var control = GetComponent<AICharacterControl>();
 
     void Start()
@@ -56,6 +57,9 @@ public class SwarmBot : MonoBehaviour
 
     bool IsPlayerCloseEnoughToTag()
     {
+        if (am.DoBotsReturnToUntagged == false)
+            return false;
+
         if ((target.transform.position - this.transform.position).magnitude < gm.distToTag)
         {
             //Debug.Log("IsPlayerCloseEnoughToTag::true");
