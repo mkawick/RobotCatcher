@@ -15,13 +15,16 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (enableClickToMove)
+        if (mouseClick != null)
         {
-            mouseClick.enabled = true;
-        }
-        else
-        {
-            mouseClick.enabled = false;
+            if (enableClickToMove)
+            {
+                mouseClick.enabled = true;
+            }
+            else
+            {
+                mouseClick.enabled = false;
+            }
         }
     }
 
