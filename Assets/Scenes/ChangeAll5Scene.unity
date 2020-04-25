@@ -4516,7 +4516,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 8392b86fd2a847c4cb9bcbd2a40af5f6, type: 2}
 --- !u!1 &1852595638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4724,6 +4724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064735539393197412, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
+        type: 3}
+      propertyPath: angleToTagInDegrees
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197413, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
