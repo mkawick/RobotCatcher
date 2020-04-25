@@ -131,6 +131,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                         whenDoesNextStateChangeOccur = Time.time + 5.0f;
                         botManager.StartGame(false);
                         PlaySound(AudioClipToPlay.EndGame);
+                        ScaleTheField(gameField, 0.2f);
                     }
                     break;
                 case GameStates.RoundComplete:
@@ -138,29 +139,36 @@ public class GameManagerBotSwarm : MonoBehaviour
                         roundNumber++;
                         gameState = GameStates.Beginning;
                         whenDoesNextStateChangeOccur = Time.time + 4.0f;
-                        ScaleTheField(gameField, 0.1f);
+                        RebuildNavMesh();
                     }
                     break;
             }
         }
-        //gameState = GameStates.RoundComplete;
     }
 
     void ScaleTheField(GameObject field, float percentage = 0.1f)
     {
         if (field != null)
         {
-            field.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-            var settings = navMeshSurface.GetBuildSettings();
-
-            settings.agentRadius = 0.5f;
-            settings.agentHeight = 2.0f;
-            settings.agentSlope = 30;
-            settings.agentClimb = 0.4f;
-
-            settings.minRegionArea = 2.0f;
-            navMeshSurface.BuildNavMesh();
+            //field.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            float newFieldScale = fieldSizeScale * (1.0f + percentage);
+            fieldSizeScale = newFieldScale;
+            Vector3 scale = field.transform.localScale;
+            scale *= fieldSizeScale;
+            iTween.ScaleTo(gameField, scale, 4);
         }
+    }
+    void RebuildNavMesh()
+    {
+        var settings = navMeshSurface.GetBuildSettings();
+
+        settings.agentRadius = 0.5f;
+        settings.agentHeight = 2.0f;
+        settings.agentSlope = 23;
+        settings.agentClimb = 0.4f;
+        settings.minRegionArea = 2.0f;
+
+        navMeshSurface.BuildNavMesh();
     }
 
 
