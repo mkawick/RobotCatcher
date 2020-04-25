@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class GameManagerBotSwarm : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class GameManagerBotSwarm : MonoBehaviour
     float fieldSizeScale = 1;
     [SerializeField]
     GameObject gameField;
+    [SerializeField]
+    NavMeshSurface navMeshSurface;
 
 
     [SerializeField]
@@ -147,14 +150,19 @@ public class GameManagerBotSwarm : MonoBehaviour
     {
         if (field != null)
         {
-            float newFieldScale = fieldSizeScale * (1.0f + percentage);
-            fieldSizeScale = newFieldScale;
-            Vector3 scale = field.transform.localScale;
-            scale *= fieldSizeScale;
-            iTween.ScaleTo(gameField, scale, 4);
-            //field.transform.localScale = scale;
+            field.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            var settings = navMeshSurface.GetBuildSettings();
+
+            settings.agentRadius = 0.5f;
+            settings.agentHeight = 2.0f;
+            settings.agentSlope = 30;
+            settings.agentClimb = 0.4f;
+
+            settings.minRegionArea = 2.0f;
+            navMeshSurface.BuildNavMesh();
         }
     }
+
 
     void UpdateGameUIState()
     {
