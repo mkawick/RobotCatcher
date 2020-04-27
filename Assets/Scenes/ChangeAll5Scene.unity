@@ -4748,17 +4748,17 @@ PrefabInstance:
     - target: {fileID: 2064735539393197414, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
       propertyPath: m_Height
-      value: 2
+      value: 2.91
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197414, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
       propertyPath: m_Radius
-      value: 0.7
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197414, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.1
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197416, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}

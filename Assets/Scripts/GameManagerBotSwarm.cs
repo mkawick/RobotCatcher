@@ -150,7 +150,6 @@ public class GameManagerBotSwarm : MonoBehaviour
     {
         if (field != null)
         {
-            //field.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             float newFieldScale = fieldSizeScale * (1.0f + percentage);
             fieldSizeScale = newFieldScale;
             Vector3 scale = field.transform.localScale;
