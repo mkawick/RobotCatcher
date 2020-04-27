@@ -42,7 +42,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (this.target != null)
                 agent.SetDestination(targetPosition);
             else
-                agent.SetDestination(transform.position);
+                try
+                {
+                    if(agent.isActiveAndEnabled == false)
+                        this.target = target;
+                    agent.SetDestination(transform.position);
+                }
+                catch
+                {
+                    this.target = target;
+                }
         }
 
         public void SetTarget(Vector3 position)

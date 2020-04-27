@@ -73,12 +73,14 @@ public class GameManagerBotSwarm : MonoBehaviour
     int timeRemainingTickCounter = 0;
 
     int permScore = 0;
+    public int stageNum { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         botManager.SetupAllBots(this);
         botManager.StartGame(false);
+        stageNum = 0;
 
         gameState = GameStates.Beginning;
         whenDoesNextStateChangeOccur = Time.time + 2.0f;
@@ -120,6 +122,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                         if (normalRoundTime <minSecondsLostPerRound)
                             normalRoundTime = minSecondsLostPerRound;
 
+                        
                         botManager.StartGame(true);
                         PlaySound(AudioClipToPlay.StartGame);
                         botManager.MakeOpponentsFaster(speedIncreasePerRound);
@@ -129,6 +132,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                     {
                         gameState = GameStates.RoundComplete;
                         whenDoesNextStateChangeOccur = Time.time + 5.0f;
+                        stageNum++;
                         botManager.StartGame(false);
                         PlaySound(AudioClipToPlay.EndGame);
                         ScaleTheField(gameField, 0.2f);

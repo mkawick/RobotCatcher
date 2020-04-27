@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class SwarmBot : MonoBehaviour
 {
     public bool amITagged;
+    public int stageBegins = 0;
     //public bool autoTarget = false;
     internal GameManagerBotSwarm gm;
     public Renderer modelRenderer;
@@ -29,12 +30,15 @@ public class SwarmBot : MonoBehaviour
     void Start()
     {
         GetControl();
-        UpateSpeed();
+        UpdateSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.activeInHierarchy == false)
+            return;
+
         if (amITagged == true && isGameRunning == true)
         {
             if (HasEnoughTimeExpired() == true)
@@ -78,7 +82,7 @@ public class SwarmBot : MonoBehaviour
         if (target == null)
         {
             target = gm.GetPlayer();
-            UpateSpeed();
+            UpdateSpeed();
             GetControl().SetTarget(target.transform);
         }
         //Debug.Log("ChasePlayer");
@@ -98,6 +102,8 @@ public class SwarmBot : MonoBehaviour
     void RunAway()
     {
         //Debug.Log("RunAway");
+        if (gameObject.activeInHierarchy == false)
+            return;
 
         if (Time.time > whenCanIStartRunningAway)
         {
@@ -114,7 +120,7 @@ public class SwarmBot : MonoBehaviour
 
             } while (Vector3.Dot(dirToTarget, normalizedDirection) > 0);
 
-            UpateSpeed();
+            UpdateSpeed();
             SetTargetLocation(normalizedDirection);
             whenCanIStartRunningAway = Time.time + 2.0f;
         }
@@ -129,34 +135,40 @@ public class SwarmBot : MonoBehaviour
 
     public void TagMe()
     {
-        //Debug.Log("TagMe");
-        if (isGameRunning == false)
-            return;
+        if (gameObject.activeInHierarchy == true)
+        {
+            //Debug.Log("TagMe");
+            if (isGameRunning == false)
+                return;
 
-        amITagged = true;
-        gm.AmIConverted(this, amITagged);
-        target = null;
-        GetControl().SetTarget(null);
+            amITagged = true;
+            gm.AmIConverted(this, amITagged);
+            target = null;
+            GetControl().SetTarget(null);
 
-        whenCanIStartChasing = Time.time + 2.0f;
+            whenCanIStartChasing = Time.time + 2.0f;
+        }
     }
 
     public void Untag()
     {
-        //Debug.Log("Untag");
-        if (isGameRunning == false)
-            return;
+        if (gameObject.activeInHierarchy == true)
+        {
+            //Debug.Log("Untag");
+            if (isGameRunning == false)
+                return;
 
-        amITagged = false;
-        gm.AmIConverted(this, amITagged);
-        target = null;
+            amITagged = false;
+            gm.AmIConverted(this, amITagged);
+            target = null;
 
 
-        GetControl().SetTarget(null);
-        whenCanIStartRunningAway = Time.time + 2.0f;
+            GetControl().SetTarget(null);
+            whenCanIStartRunningAway = Time.time + 2.0f;
+        }
     }
 
-    void UpateSpeed()
+    void UpdateSpeed()
     {
         var character = GetComponent<ThirdPersonCharacter>();
         if(amITagged)
