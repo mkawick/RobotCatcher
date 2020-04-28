@@ -79,13 +79,16 @@ public class GroundChunkManager : MonoBehaviour
         float which = Random.Range(0, workingChunks.Length);
         GameObject newChunk = Instantiate(workingChunks[(int)which], this.transform );
         newChunk.transform.position = position;
-
+        newChunk.SetActive(true);
         return newChunk;
     }
 
     void DeleteOldChunk()
     {
-
+        GameObject go = chunkList[0];
+        chunkList.RemoveAt(0);
+        Destroy(go);
+        //chunkList[chunkList.Count - 1]
     }
 
     public void UpdateWorldPosition(Vector3 playerPosition)
@@ -95,12 +98,23 @@ public class GroundChunkManager : MonoBehaviour
             playerZ = playerPosition.z;
         }
 
-        if (lastChunkPositionPlaced.z + chunkLength * 2 < playerZ + distanceBeforeCreatingNewChunk)
+        if (lastChunkPositionPlaced.z + chunkLength  < playerZ + distanceBeforeCreatingNewChunk)
         {
-            Vector3 v = playerPosition;
-            AddChunkToWorld(lastChunkPositionPlaced);
-            lastChunkPositionPlaced = chunkList[chunkList.Count - 1].transform.position;
+            Vector3 v = lastChunkPositionPlaced;
+            //v.z += ;
+            GameObject floor = AddChunkToWorld(v);
+            chunkList.Add(floor);
+
+            MoveTheLastChunkTrackingForward();
+            DeleteOldChunk();
+            RebuildNavMesh();
         }
+    }
+
+    void MoveTheLastChunkTrackingForward()
+    {
+        lastChunkPositionPlaced = chunkList[chunkList.Count - 1].transform.position;
+        lastChunkPositionPlaced.z += chunkLength;
     }
      
 }
