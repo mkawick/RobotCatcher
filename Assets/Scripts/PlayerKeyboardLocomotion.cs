@@ -52,6 +52,9 @@ public class PlayerKeyboardLocomotion : MonoBehaviour
 
     void ClearExistingTarget()
     {
+        if (mouseClick == null)
+            return;
+
         mouseClick.enabled = false;
         this.SendMessage("SetTarget", this.transform);
         if (mouseClick)
