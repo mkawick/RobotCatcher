@@ -313,8 +313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426917798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6320225, y: 0.602, z: 6.993}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.68, z: 0}
+  m_LocalScale: {x: 1.7864, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 781610134}
   m_RootOrder: 0
@@ -360,12 +360,12 @@ PrefabInstance:
     - target: {fileID: 3963179295700110318, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3963179295700110318, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.42
       objectReference: {fileID: 0}
     - target: {fileID: 3963179295700110318, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
         type: 3}
@@ -417,6 +417,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3963179295705512684, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9, type: 3}
 --- !u!1 &781610133
@@ -463,8 +468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2ed6a4cfddf86e4c83fadc6f0d9126e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gcm: {fileID: 1497828553}
   obstacles:
   - {fileID: 426917798}
+  currentDifficulty: 1
 --- !u!1 &915442322
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,13 +763,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239359394}
-  m_LocalRotation: {x: 0.35823175, y: -0, z: -0, w: 0.93363273}
-  m_LocalPosition: {x: 0, y: 6.3, z: -10}
+  m_LocalRotation: {x: 0.30819374, y: -0, z: -0, w: 0.95132357}
+  m_LocalPosition: {x: 0, y: 3.53, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 41.983, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.901, y: 0, z: 0}
 --- !u!1 &1497828552
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cf8678f623b374daf0de68ab473c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleManager: {fileID: 781610135}
   workingChunks:
   - {fileID: 1206246414}
   navMeshSurface: {fileID: 109269848}

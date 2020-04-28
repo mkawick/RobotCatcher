@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class GroundChunkManager : MonoBehaviour
 {
+    public ObstacleManager obstacleManager;
+
     public GameObject[] workingChunks;
     List<GameObject> chunkList;
     public NavMeshSurface navMeshSurface;
@@ -77,9 +79,13 @@ public class GroundChunkManager : MonoBehaviour
     GameObject AddChunkToWorld(Vector3 position)
     {
         float which = Random.Range(0, workingChunks.Length);
-        GameObject newChunk = Instantiate(workingChunks[(int)which], this.transform );
+        GameObject newChunk = Instantiate(workingChunks[(int)which], this.transform);
         newChunk.transform.position = position;
         newChunk.SetActive(true);
+        if(obstacleManager != null)
+        {
+            obstacleManager.ChunkAdded(newChunk);
+        }
         return newChunk;
     }
 
