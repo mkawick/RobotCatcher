@@ -20,6 +20,10 @@ public class ClickableObstacle : MonoBehaviour
         
     }
 
+    internal int GetMaterialIndex()
+    {
+        return matchMaterialIndex;
+    }
     internal void RandomizeIndex()
     {
         int num = obstacleManager.GetNumMaterials();

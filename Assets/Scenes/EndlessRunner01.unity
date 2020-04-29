@@ -425,6 +425,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9, type: 3}
+--- !u!137 &527171108 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3963179295705646524, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 516843453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &781610133
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +853,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkManager: {fileID: 1497828553}
+  obstacleManager: {fileID: 781610135}
   speedMultiplier: 1
+  modelRenderer: {fileID: 527171108}
 --- !u!1 &1950141387
 GameObject:
   m_ObjectHideFlags: 0

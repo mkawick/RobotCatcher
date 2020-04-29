@@ -6,12 +6,21 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class EndlessRunnerPlayer : MonoBehaviour
 {
     public GroundChunkManager chunkManager;
+    public ObstacleManager obstacleManager;
     [SerializeField]
     float speedMultiplier = 1.0f;
+    [SerializeField]
+    Renderer modelRenderer;
+
+    int matchMaterialIndex;
     // Start is called before the first frame update
     void Start()
     {
-        
+        int num = obstacleManager.GetNumMaterials();
+
+        matchMaterialIndex = Random.Range(0, num);
+        Material mat = obstacleManager.GetMaterial(matchMaterialIndex);
+        modelRenderer.material = mat;
     }
 
     // Update is called once per frame
@@ -30,5 +39,21 @@ public class EndlessRunnerPlayer : MonoBehaviour
         control.AnimSpeedMultiplier = speedMultiplier;
         control.Move(moveDir, false, false);
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        var obst = collision.gameObject.GetComponent<ClickableObstacle>();
+        if (obst != null)
+        {
+            if (obst.GetMaterialIndex() != matchMaterialIndex)
+            {
+                // die
+            }
+            else
+            {
+                Destroy(collision.gameObject, 0.1f);
+            }
+        }
     }
 }
