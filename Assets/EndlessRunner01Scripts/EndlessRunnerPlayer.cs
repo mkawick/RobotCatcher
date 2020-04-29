@@ -7,8 +7,10 @@ public class EndlessRunnerPlayer : MonoBehaviour
 {
     public GroundChunkManager chunkManager;
     public ObstacleManager obstacleManager;
+
     [SerializeField]
     float speedMultiplier = 1.0f;
+
     [SerializeField]
     Renderer modelRenderer;
 
@@ -19,8 +21,15 @@ public class EndlessRunnerPlayer : MonoBehaviour
         int num = obstacleManager.GetNumMaterials();
 
         matchMaterialIndex = Random.Range(0, num);
+       /* Material tempmat = GetComponent<Renderer>().material;
+        print("Materials " + Resources.FindObjectsOfTypeAll(typeof(Material)).Length);
+        */
         Material mat = obstacleManager.GetMaterial(matchMaterialIndex);
-        modelRenderer.material = mat;
+        //modelRenderer.material.color = mat.color;
+        foreach(var modelMat in modelRenderer.materials)
+        {
+            modelMat.color = mat.color;
+        }
     }
 
     // Update is called once per frame
