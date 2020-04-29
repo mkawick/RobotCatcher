@@ -7,9 +7,10 @@ public class GroundChunkManager : MonoBehaviour
 {
     public ObstacleManager obstacleManager;
 
-    public GameObject[] workingChunks;
+    public GameObject[] chunkModels;
     List<GameObject> chunkList;
     public NavMeshSurface navMeshSurface;
+    public int numModelsIntoDistance = 2;
     float playerZ = 0;
     float distanceBeforeCreatingNewChunk = 45;
     float chunkLength = 15;
@@ -33,28 +34,30 @@ public class GroundChunkManager : MonoBehaviour
 
     void HideAllWorkingChunks()
     {
-        foreach (var i in workingChunks)
+        foreach (var i in chunkModels)
             i.SetActive(false);
     }
     void SetupScene()
     {
         Vector3 position = new Vector3(0, 0, 0);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i <= numModelsIntoDistance; i++)
         {
             GameObject floor = AddChunkToWorld(position);
             chunkList.Add(floor);
             float length = floor.transform.lossyScale.z;
-            if (i == 0)
-                position.z += length;// centered at origin
-            else
-                position.z += length;
-            floor.SetActive(true);
+
+            //var collider = floor.GetComponent<Collider>();
+           // var mesh = floor.GetComponent<Mesh>();
+            //float test2 = collider.bounds.size.z;
+            //float test = mesh.bounds.size.z;
+
+            position.z += length;
         }
         distanceBeforeCreatingNewChunk = position.z;
         lastDistanceChunk = position.z;
         lastChunkPositionPlaced = position;
 
-        chunkLength = workingChunks[0].transform.lossyScale.z;// todo, generalize this
+        chunkLength = chunkModels[0].transform.lossyScale.z;// todo, generalize this
         Debug.Log("chunk length: " + chunkLength);
 
         RebuildNavMesh();
@@ -78,8 +81,8 @@ public class GroundChunkManager : MonoBehaviour
 
     GameObject AddChunkToWorld(Vector3 position)
     {
-        float which = Random.Range(0, workingChunks.Length);
-        GameObject newChunk = Instantiate(workingChunks[(int)which], this.transform);
+        float which = Random.Range(0, chunkModels.Length);
+        GameObject newChunk = Instantiate(chunkModels[(int)which], this.transform);
         newChunk.transform.position = position;
         newChunk.SetActive(true);
         if(obstacleManager != null)

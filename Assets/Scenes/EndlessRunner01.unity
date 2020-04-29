@@ -257,8 +257,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1122313, y: 1, z: 1.2285469}
+  m_Center: {x: -0.02928452, y: 0, z: 0.052488923}
 --- !u!23 &426917801
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 3963179295700110318, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.42
+      value: -1.47
       objectReference: {fileID: 0}
     - target: {fileID: 3963179295700110318, guid: f5a6120bc0ed8414c8a8c8bb5803a1f9,
         type: 3}
@@ -456,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781610133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7451172, y: 0.08628845, z: 3.2329288}
+  m_LocalPosition: {x: 2.66, y: 0.08628845, z: 3.2329288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426917803}
@@ -487,6 +487,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e9af22bc695124241b70689e1a79db24, type: 2}
   - {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
   obstacleContainer: {fileID: 1950141387}
+  shouldGenerateObstacles: 1
 --- !u!1 &915442322
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,8 +637,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206246414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7451172, y: -0.08628845, z: -3.2329288}
-  m_LocalScale: {x: 15, y: 0.5, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15, y: 0.5, z: 10}
   m_Children: []
   m_Father: {fileID: 330913980}
   m_RootOrder: 0
@@ -673,7 +674,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 850183d622bf27940825f6ee6f54d348, type: 2}
+  - {fileID: 2100000, guid: 319c5690f0840a94593e968694b5dd99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -778,13 +779,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239359394}
-  m_LocalRotation: {x: 0.30819374, y: -0, z: -0, w: 0.95132357}
+  m_LocalRotation: {x: 0.18921015, y: -0, z: -0, w: 0.98193663}
   m_LocalPosition: {x: 0, y: 3.53, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 35.901, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.813002, y: 0, z: 0}
 --- !u!1 &1497828552
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,9 +816,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleManager: {fileID: 781610135}
-  workingChunks:
+  chunkModels:
   - {fileID: 1206246414}
   navMeshSurface: {fileID: 109269848}
+  numModelsIntoDistance: 6
 --- !u!4 &1497828554
 Transform:
   m_ObjectHideFlags: 0
@@ -826,7 +828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497828552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7451172, y: 0.08628845, z: 3.2329288}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 109269847}

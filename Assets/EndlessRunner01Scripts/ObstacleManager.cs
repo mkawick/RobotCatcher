@@ -9,6 +9,8 @@ public class ObstacleManager : MonoBehaviour
     public float currentDifficulty = 1;
     public Material[] matchMaterials;
     public GameObject obstacleContainer;
+
+    public bool shouldGenerateObstacles = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,9 @@ public class ObstacleManager : MonoBehaviour
 
     public void ChunkAdded(GameObject chunk)
     {
+        if (shouldGenerateObstacles == false)
+            return;
+
         Vector3 scale = chunk.transform.localScale;
         NewChunkWasGenerated(chunk.transform.position, scale.x/2, scale.z/2);
     }
