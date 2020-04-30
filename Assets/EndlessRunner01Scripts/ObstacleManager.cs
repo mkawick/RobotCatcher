@@ -38,10 +38,10 @@ public class ObstacleManager : MonoBehaviour
             return;
 
         Vector3 scale = chunk.transform.localScale;
-        NewChunkWasGenerated(chunk.transform.position, scale.x/2, scale.z/2);
+        NewChunkWasGenerated(chunk.transform, scale.x/2, scale.z/2);
     }
 
-    void NewChunkWasGenerated(Vector3 center, float boundsX, float boundsZ)
+    void NewChunkWasGenerated(Transform chunkTransform, float boundsX, float boundsZ)
     {
         float rangeMin = currentDifficulty * 3;
         float rangeMax = currentDifficulty * 5;
@@ -49,6 +49,7 @@ public class ObstacleManager : MonoBehaviour
         if (rangeMax > 100)
             rangeMax = 100;
         float numObstaclesToGenerate = Random.Range(rangeMin, rangeMax);
+        var center = chunkTransform.position;
 
         float margin = 0.5f;
         float positionMinX = center.x - boundsX + margin;
@@ -67,21 +68,24 @@ public class ObstacleManager : MonoBehaviour
             float x = Random.Range(positionMinX, positionMaxX);
             float z = Random.Range(positionMinZ, positionMaxZ);
             Vector3 pos = new Vector3(x, height, z);
-            CreateObstacle(whichObstacle, pos, q);
+
+            // when we delete this chunk later, all of the obstacles will go too.
+            CreateObstacle(whichObstacle, pos, q).transform.parent = chunkTransform;
         }
     }
 
-    void CreateObstacle(int which, Vector3 pos, Quaternion q)
+    GameObject CreateObstacle(int which, Vector3 pos, Quaternion q)
     {
-        GameObject newChunk = Instantiate(obstaclePrefabs[which], pos, q);        
-        ClickableObstacle obst = newChunk.GetComponent<ClickableObstacle>();
+        GameObject newObstacle = Instantiate(obstaclePrefabs[which], pos, q);        
+        ClickableObstacle obst = newObstacle.GetComponent<ClickableObstacle>();
         if (obst)
         {
             obst.obstacleManager = this;
         }
-        newChunk.SetActive(true);
-        obst.transform.parent = obstacleContainer.transform;
+        newObstacle.SetActive(true);
+        
         obst.RandomizeIndex();
+        return newObstacle;
     }
 
     internal int GetNumMaterials() { return matchMaterials.Length; }
