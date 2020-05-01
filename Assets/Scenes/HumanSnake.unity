@@ -3686,7 +3686,7 @@ MonoBehaviour:
   - {fileID: 1036801458}
   laterStagebots: []
   DoBotsReturnToUntagged: 0
-  runAwayDistanceMultiplier: 5
+  runAwayDistanceMultiplier: 2.6
   runAwayDistMultChangePerRound: 0.4
 --- !u!1 &883518442
 GameObject:
@@ -6307,7 +6307,7 @@ PrefabInstance:
     - target: {fileID: 2064735539393197412, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
       propertyPath: angleToTagInDegrees
-      value: 90
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197413, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
@@ -6368,6 +6368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speedMultiplier
       value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064735539393197419, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197423, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
@@ -6439,7 +6444,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2064735539393197419, guid: af54eb5bc1c5c0040ad8fb6e31ef8873, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af54eb5bc1c5c0040ad8fb6e31ef8873, type: 3}
 --- !u!1 &1979060814
 GameObject:
