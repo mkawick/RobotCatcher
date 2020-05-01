@@ -40,6 +40,11 @@ public class AgentManagerBotSwarm : MonoBehaviour
 
     private void ActivateBotsForStage(int stageNum)
     {
+      /*  foreach (var tagee in bots)
+        {
+            tagee.gameObject.SetActive(true);// ensure creation
+        }*/
+
         foreach (var tagee in bots)
         {
             if (tagee.stageBegins <= stageNum)
@@ -60,6 +65,7 @@ public class AgentManagerBotSwarm : MonoBehaviour
             foreach (var tagee in bots)
             {
                 tagee.Untag();
+                //tagee.
             }
         }
         else
@@ -108,8 +114,14 @@ public class AgentManagerBotSwarm : MonoBehaviour
     {
         foreach (var tagee in bots)
         {
-            tagee.GetControl().character.ForwardSpeedMultiplier += amount;
-            runAwayDistanceMultiplier += runAwayDistMultChangePerRound;
-}
+            var control = tagee.GetControl();
+            // todo, fix this
+            if (control.character == null)
+                continue;
+
+            control.character.ForwardSpeedMultiplier += amount;
+        }
+
+        runAwayDistanceMultiplier += runAwayDistMultChangePerRound;
     }
 }

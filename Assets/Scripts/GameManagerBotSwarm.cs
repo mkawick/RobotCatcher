@@ -130,12 +130,14 @@ float fieldSizeScale = 1;
                         if (normalRoundTime <minSecondsLostPerRound)
                             normalRoundTime = minSecondsLostPerRound;
 
-                        
+
+                        listOfSnakeObjects.Clear();
+                        listOfSnakeObjects.Add(player.gameObject);
+
                         botManager.StartGame(true);
                         PlaySound(AudioClipToPlay.StartGame);
                         botManager.MakeOpponentsFaster(speedIncreasePerRound);
-                        listOfSnakeObjects.Clear();
-                        listOfSnakeObjects.Add(player.gameObject);
+                        
                     }
                     break;
                 case GameStates.NormalPlay:
