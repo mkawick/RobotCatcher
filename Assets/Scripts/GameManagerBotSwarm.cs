@@ -26,14 +26,20 @@ public class GameManagerBotSwarm : MonoBehaviour
     [SerializeField]
     float minSecondsLostPerRound = 10;
 
+    public bool areWeASnake = true;
+
     [SerializeField]
     PlayerTagSwarmBot player;
 
     [SerializeField]
     AgentManagerBotSwarm botManager;
 
+    
+    List<GameObject> listOfSnakeObjects;
+    
 
-    float fieldSizeScale = 1;
+
+float fieldSizeScale = 1;
     [SerializeField]
     GameObject gameField;
     [SerializeField]
@@ -69,7 +75,7 @@ public class GameManagerBotSwarm : MonoBehaviour
     GameStates gameState = GameStates.Beginning;
     float whenDoesNextStateChangeOccur = 0;
     float whenDidLastStateChangeOccur = 0;
-    float normalRoundTime  = 30;
+    float normalRoundTime  = 60;
     int timeRemainingTickCounter = 0;
 
     int permScore = 0;
@@ -80,6 +86,7 @@ public class GameManagerBotSwarm : MonoBehaviour
     {
         botManager.SetupAllBots(this);
         botManager.StartGame(false);
+        listOfSnakeObjects = new List<GameObject>();
         stageNum = 0;
 
         gameState = GameStates.Beginning;
@@ -126,6 +133,8 @@ public class GameManagerBotSwarm : MonoBehaviour
                         botManager.StartGame(true);
                         PlaySound(AudioClipToPlay.StartGame);
                         botManager.MakeOpponentsFaster(speedIncreasePerRound);
+                        listOfSnakeObjects.Clear();
+                        listOfSnakeObjects.Add(player.gameObject);
                     }
                     break;
                 case GameStates.NormalPlay:
@@ -210,7 +219,7 @@ public class GameManagerBotSwarm : MonoBehaviour
                 if (secondsLeft != timeRemainingTickCounter)
                 {
                     timeRemainingTickCounter = secondsLeft;
-                    PlaySound(AudioClipToPlay.TimeTick);
+                    //PlaySound(AudioClipToPlay.TimeTick);
                 }
             }
             else
@@ -230,9 +239,17 @@ public class GameManagerBotSwarm : MonoBehaviour
             return;
 
         if (isConverted)
+        {
             tagged.modelRenderer.material = matsForTagged[0];
+            if(areWeASnake)
+            {
+                listOfSnakeObjects.Add(tagged.gameObject);
+            }
+        }
         else
+        {
             tagged.modelRenderer.material = matsForTagged[1];
+        }
     }
 
 
@@ -259,12 +276,25 @@ public class GameManagerBotSwarm : MonoBehaviour
             TransitionGameState();
         }
     }
-
+    
     public PlayerTagSwarmBot GetPlayer()
     {
         return player;
     }
-    public SwarmBot FindNextTarget()
+
+    public GameObject GetAIToFollow(GameObject whoWantsToKnow)
+    {
+        GameObject go = null;
+        foreach(var search in listOfSnakeObjects)
+        {
+            if (search == whoWantsToKnow)// always return the previous guy
+                return go;
+            go = search;
+        }
+        return go ;
+    }
+    
+public SwarmBot FindNextTarget()
     {
         float smallestDist = 1000;
         SwarmBot target = null;

@@ -3687,7 +3687,7 @@ MonoBehaviour:
   laterStagebots: []
   DoBotsReturnToUntagged: 0
   runAwayDistanceMultiplier: 2.6
-  runAwayDistMultChangePerRound: 0.4
+  runAwayDistMultChangePerRound: 0.8
 --- !u!1 &883518442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5208,6 +5208,7 @@ MonoBehaviour:
   speedIncreasePerRound: 0.3
   numSecondsLostPerRound: 2
   minSecondsLostPerRound: 10
+  areWeASnake: 1
   player: {fileID: 1603935434}
   botManager: {fileID: 800964887}
   gameField: {fileID: 1285627295}

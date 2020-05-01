@@ -10,7 +10,7 @@ public class SwarmBot : MonoBehaviour
     //public bool autoTarget = false;
     internal GameManagerBotSwarm gm;
     public Renderer modelRenderer;
-    internal PlayerTagSwarmBot target;
+    internal GameObject target;
     internal AgentManagerBotSwarm am;
 
     [HideInInspector]
@@ -58,10 +58,6 @@ public class SwarmBot : MonoBehaviour
         }
         else // todo, avoid
         {
-            if (target == null)
-            {
-                target = gm.GetPlayer();
-            }
             RunAway();
         }
     }
@@ -81,7 +77,8 @@ public class SwarmBot : MonoBehaviour
     {
         if (target == null)
         {
-            target = gm.GetPlayer();
+            GrabTarget();
+            //target = gm.GetPlayer();
             UpdateSpeed();
             GetControl().SetTarget(target.transform);
         }
@@ -99,11 +96,31 @@ public class SwarmBot : MonoBehaviour
         return false;
     }
 
+    void GrabTarget()
+    {
+        if (target == null)
+        {
+            if (gm.areWeASnake == true)
+            {
+                GameObject go = gm.GetAIToFollow(this.gameObject);// do not follow self
+                if(go != this)
+                {
+                    target = go;
+                }
+            }
+            if(target == null)
+            {
+                target = gm.GetPlayer().gameObject;
+            }
+        }
+    }
     void RunAway()
     {
         //Debug.Log("RunAway");
         if (gameObject.activeInHierarchy == false)
             return;
+
+        GrabTarget();
 
         if (Time.time > whenCanIStartRunningAway)
         {
