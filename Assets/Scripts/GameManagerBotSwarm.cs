@@ -27,6 +27,7 @@ public class GameManagerBotSwarm : MonoBehaviour
     float minSecondsLostPerRound = 10;
 
     public bool areWeASnake = true;
+    public bool fieldScalingEnabled = false;
 
     [SerializeField]
     PlayerTagSwarmBot player;
@@ -161,6 +162,8 @@ float fieldSizeScale = 1;
 
     void ScaleTheField(GameObject field, float percentage = 0.1f)
     {
+        if (fieldScalingEnabled == false)
+            return;
         if (field != null)
         {
             float newFieldScale = fieldSizeScale * (1.0f + percentage);

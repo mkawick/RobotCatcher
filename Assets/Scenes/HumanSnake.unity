@@ -3686,8 +3686,8 @@ MonoBehaviour:
   - {fileID: 1036801458}
   laterStagebots: []
   DoBotsReturnToUntagged: 0
-  runAwayDistanceMultiplier: 2.6
-  runAwayDistMultChangePerRound: 0.8
+  runAwayDistanceMultiplier: 1.2
+  runAwayDistMultChangePerRound: 0.2
 --- !u!1 &883518442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3935,13 +3935,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.25335687, y: -0, z: -0, w: 0.96737295}
-  m_LocalPosition: {x: -1.5, y: 4.008, z: -13.35}
+  m_LocalRotation: {x: 0.5058566, y: -0, z: -0, w: 0.8626177}
+  m_LocalPosition: {x: -1.5, y: 16.391, z: -11.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 29.353, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.776005, y: 0, z: 0}
 --- !u!1 &1036801454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a,
@@ -5137,7 +5137,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503849853}
-  - component: {fileID: 1503849854}
   - component: {fileID: 1503849855}
   m_Layer: 0
   m_Name: GameManager
@@ -5165,29 +5164,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1503849854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503849852}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86178948076f2a34f831f0772e0e13bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathContainer: {fileID: 0}
-  tagPlayers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  matsForTagged:
-  - {fileID: 2100000, guid: 225caff6583d4df4a8c7bc8b5f212949, type: 2}
-  - {fileID: 2100000, guid: 07ce2db3ddea1054d9ab6fc6580ed085, type: 2}
-  tagTimeOut: 3
-  distToTag: 1.2
 --- !u!114 &1503849855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5209,6 +5185,7 @@ MonoBehaviour:
   numSecondsLostPerRound: 2
   minSecondsLostPerRound: 10
   areWeASnake: 1
+  fieldScalingEnabled: 0
   player: {fileID: 1603935434}
   botManager: {fileID: 800964887}
   gameField: {fileID: 1285627295}
@@ -6344,7 +6321,7 @@ PrefabInstance:
     - target: {fileID: 2064735539393197413, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2064735539393197413, guid: af54eb5bc1c5c0040ad8fb6e31ef8873,
         type: 3}
